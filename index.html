@@ -1,0 +1,172 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style type="text/css">
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            background-color: beige;
+        }
+
+        h1 {
+            font-size: 3em;
+            padding-top: 40%;
+            padding-bottom: 40%;
+            padding-left: 5%;
+            padding-right: 5%;
+            font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .yt {
+            position: relative;
+            padding-bottom: 56.25%;
+            padding-top: 30px;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .yt iframe,
+        .yt object,
+        .yt embed {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        #wrapper {
+            text-align: center;
+            min-height: 100%;
+        }
+    </style>
+    <title>Why Are You Awake?</title>
+</head>
+
+<body>
+    <div id="parent">
+        <span></span>
+        <div id="wrapper">
+            <h1>Pssst.</h1>
+        </div>
+        <div id="wrapper">
+            <h1>Yes, you there.</h1>
+        </div>
+        <div id="wrapper">
+            <h1>The person that's awake, reading this.</h1>
+        </div>
+        <div id="wrapper">
+            <h1>Hello!</h1>
+        </div>
+        <div id="wrapper">
+            <h1>Why are you awake?</h1>
+        </div>
+        <div id="wrapper">
+            <h1>I don't know what time it is for you,</h1>
+        </div>
+        <div id="wrapper">
+            <h1>but it might be time to knock yourself out for the day.</h1>
+        </div>
+        <div id="wrapper">
+            <h1>I mean,</h1>
+        </div>
+        <div id="wrapper">
+            <h1>it's 12pm somewhere, right?</h1>
+        </div>
+        <div id="wrapper">
+            <h1>Or whenever you usually go to sleep.</h1>
+        </div>
+        <div id="wrapper">
+            <h1>You might be thinking,</h1>
+        </div>
+        <div id="wrapper">
+            <h1>"Why am I here, scrolling through this random website?"</h1>
+        </div>
+        <div id="wrapper">
+            <h1>And to that, I say,</h1>
+        </div>
+        <div id="wrapper">
+            <h1>Because.</h1>
+        </div>
+        <div id="wrapper">
+            <h1>And that might not be a satisfying answer.</h1>
+        </div>
+        <div id="wrapper">
+            <h1>You might be slightly annoyed.</h1>
+        </div>
+        <div id="wrapper">
+            <h1>Or not.</h1>
+        </div>
+        <div id="wrapper">
+            <h1 id="last">But now you've let some random text control you.</h1>
+        </div>
+        <div id="player"></div>
+    </div>
+    <script>
+        // example from https://developers.google.com/youtube/iframe_api_reference
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                //height: '489',
+                width: window.innerWidth.toString(),
+                videoId: 'dQw4w9WgXcQ',
+                events: {
+                    'onReady': onPlayerReady,
+                }
+            });
+        }
+
+        // 4. The API will call this function when the video player is ready.
+        function onPlayerReady(event) {
+            if (window.addEventListener) {
+                addEventListener('DOMContentLoaded', handler, false);
+                addEventListener('load', handler, false);
+                addEventListener('scroll', handler, false);
+                addEventListener('resize', handler, false);
+            } else if (window.attachEvent) {
+                attachEvent('onDOMContentLoaded', handler); // Internet Explorer 9+ :(
+                attachEvent('onload', handler);
+                attachEvent('onscroll', handler);
+                attachEvent('onresize', handler);
+            }
+        }
+
+        // from https://stackoverflow.com/questions/123999/how-can-i-tell-if-a-dom-element-is-visible-in-the-current-viewport/7557433#7557433
+        function isElementInViewport(el) {
+            var rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                /* or $(window).height() */
+                rect.right <= (window.innerWidth || document.documentElement
+                    .clientWidth) /* or $(window).width() */
+            );
+        }
+
+        var element = document.getElementById("last");
+        function check(el, callback) {
+            return function () {
+                if (isElementInViewport(el)) {
+                    callback();
+                }
+            }
+        }
+
+        var handler = check(element, function () {
+            console.log("element in view")
+            player.playVideo();
+        });
+    </script>
+    </div>
+</body>
+
+</html>
