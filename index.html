@@ -126,17 +126,7 @@
 
         // 4. The API will call this function when the video player is ready.
         function onPlayerReady(event) {
-            if (window.addEventListener) {
-                addEventListener('DOMContentLoaded', handler, false);
-                addEventListener('load', handler, false);
-                addEventListener('scroll', handler, false);
-                addEventListener('resize', handler, false);
-            } else if (window.attachEvent) {
-                attachEvent('onDOMContentLoaded', handler); // Internet Explorer 9+ :(
-                attachEvent('onload', handler);
-                attachEvent('onscroll', handler);
-                attachEvent('onresize', handler);
-            }
+            setInterval(handler, 500);
         }
 
         // from https://stackoverflow.com/questions/123999/how-can-i-tell-if-a-dom-element-is-visible-in-the-current-viewport/7557433#7557433
