@@ -145,6 +145,7 @@
         var element = document.getElementById("last");
         function check(el, callback) {
             return function () {
+                console.log("checking...")
                 if (isElementInViewport(el)) {
                     callback();
                 }
