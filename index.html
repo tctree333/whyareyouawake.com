@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -12,13 +13,12 @@
             background-color: beige;
         }
 
-        p {
+        h1, p {
             font-size: 3em;
-            padding-top: 40%;
-            padding-bottom: 40%;
-            padding-left: 5%;
-            padding-right: 5%;
-            font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, Geneva, Verdana, Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
         }
 
         #last {
@@ -28,10 +28,16 @@
             padding: 0;
         }
 
+        .yt-p {
+            max-width: 720px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         .yt {
             position: relative;
             padding-bottom: 56.25%;
-            padding-top: 30px;
+            /* padding-top: 30px; */
             height: 0;
             overflow: hidden;
         }
@@ -47,12 +53,16 @@
         }
 
         .wrapper {
+            position: relative;
             text-align: center;
-            min-height: 100%;
+            height: 100vh;
+            margin-left: 4em;
+            margin-right: 4em;
         }
 
         .footer {
             text-align: center;
+            position: relative;
         }
         .footer p {
             font-size: 1.2em;
@@ -60,14 +70,14 @@
         }
     </style>
     <title>Why Are You Awake?</title>
+    <meta name="description" content="Why are you awake? I mean, it's 3am somewhere... You should probably go to sleep.">
     <script async defer data-domain="whyareyouawake.com" src="https://stats.whyareyouawake.com/js/index.js"></script>
 </head>
 
 <body>
     <div id="parent">
-        <span></span>
         <div class="wrapper">
-            <p>Pssst.</p>
+            <h1>Pssst.</h1>
         </div>
         <div class="wrapper">
             <p>Yes, you there.</p>
@@ -118,10 +128,14 @@
             <p>Or not.</p>
         </div>
         <div class="wrapper">
-            <p id="last"></p>
+            <span id="last"></span>
             <p>But now you've let some random text control you.</p>
         </div>
-        <div id="player"></div>
+        <div class="yt-p">
+            <div class="yt">
+                <div id="player"></div>
+            </div>
+        </div>
         <div class="footer">
             <p>A web project by <a href="https://tomichen.com">Tomi Chen.</a></p>
         </div>
@@ -135,8 +149,6 @@
         var player;
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('player', {
-                //height: '489',
-                width: window.innerWidth.toString(),
                 videoId: 'dQw4w9WgXcQ',
                 events: {
                     'onReady': onPlayerReady,
